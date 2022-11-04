@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { populateCars } from "../helper";
+import { populateCars } from "../controller";
 
 const CARS_URL = "https://raw.githubusercontent.com/fnurhidayat/probable-garbanzo/main/data/cars.min.json";
 
 const initialState = {
   cars: [],
-  status: "idle", //'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle",
   error: null,
 };
 

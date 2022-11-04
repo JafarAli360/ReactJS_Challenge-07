@@ -21,6 +21,7 @@ const Panel = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
     // setResult(getCarsListResult);
 
     try {
@@ -33,6 +34,7 @@ const Panel = () => {
       console.log(error.message);
     }
   };
+  console.log(result);
   return (
     <div className="container">
       <div className="row">
@@ -127,7 +129,7 @@ const Panel = () => {
                       {car.manufacture} / {car.model}
                     </p>
                     <p className="fw-bold fs-4">Rp. {car.rentPerDay} / hari</p>
-                    <p className="py-3" style={{ width: "100px", height: "100px" }}>
+                    <p className="py-3" style={{ width: "300px", height: "100px" }}>
                       {car.description} / hari
                     </p>
                     <p>
