@@ -5,7 +5,7 @@ export default function NavbarLayout() {
   return (
     <Navbar bg="light" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           {" "}
           <img src="./assets/img/logo.png" alt="logo" />
         </Navbar.Brand>

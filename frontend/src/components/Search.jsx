@@ -1,4 +1,6 @@
 import { React, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getCars } from "../redux/actions/carAction";
 import { Button } from "react-bootstrap";
 
 import axios from "axios";
@@ -9,11 +11,20 @@ const Panel = () => {
   const [Time, setTime] = useState("");
   const [Capacity, setCapacity] = useState("");
   const [result, setResult] = useState([]);
+
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getCars(Driver, Date, Time, Capacity));
+  // });
+
+  // const { getCarsListResult } = useSelector((state) => state.carReducer);
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    // setResult(getCarsListResult);
 
     try {
-      const response = await axios.get(`http://localhost:3001/filtercar?driver=${Driver}&date=${Date}&time=${Time}&capacity=${Capacity}`);
+      const response = await axios.get(`http://localhost:8080/datacars?driver=${Driver}&date=${Date}&time=${Time}&capacity=${Capacity}`);
 
       const data = response.data;
       console.log(data);
@@ -90,7 +101,7 @@ const Panel = () => {
                 </div>
               </div>
               <div className="col-md">
-                <Button type="button" className="btn btn-success" style={{ marginTop: "31px" }}>
+                <Button type="submit" className="btn btn-success" style={{ marginTop: "31px" }}>
                   Search
                 </Button>
               </div>
@@ -108,17 +119,15 @@ const Panel = () => {
         )}
         {result.length >= 1
           ? result.map((car) => (
-              <div className="col-lg-4 mt-3 mb-2">
-                <div className="card" style={{ maxWidth: "500px", maxHeigth: "900px" }}>
-                  <picture>
-                    <img src={car.image} className="card-img-top img-fluid" alt="" style={{ maxWidth: "350px", maxHeight: "200px" }} />
-                  </picture>
+              <div className="col-lg-4 mt-2 mt-3 d-flex flex-column justify-content-between h-100">
+                <div className="card">
+                  <img className="img-thumbnail" src={car.image} alt={car.manufacture} style={{ maxWidth: "400px", maxHeight: "207px" }}></img>
                   <div className="card-body">
                     <p>
                       {car.manufacture} / {car.model}
                     </p>
                     <p className="fw-bold fs-4">Rp. {car.rentPerDay} / hari</p>
-                    <p className="py-3" style={{ width: "300px", height: "100px" }}>
+                    <p className="py-3" style={{ width: "100px", height: "100px" }}>
                       {car.description} / hari
                     </p>
                     <p>
@@ -130,11 +139,9 @@ const Panel = () => {
                     <p>
                       <i class="pe-2 bi bi-calendar"></i> {car.year} Tahun
                     </p>
-                  </div>
-                  <div class="d-grid">
-                    <button class="btn btn-success" type="button" style={{ margin: "-10px 10px 15px 10px" }}>
+                    <Button type="submit" className="btn btn-success" style={{ width: "305px" }}>
                       Pilih Mobil
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
